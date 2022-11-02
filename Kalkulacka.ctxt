@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Kalkulacka
+comment1.params=
+comment1.target=Kalkulacka()
+comment2.params=cislo
+comment2.target=void\ zadajCislo(double)
+comment3.params=
+comment3.target=double\ getVysledok()
+comment4.params=
+comment4.target=double\ getOperand()
+comment5.params=
+comment5.target=char\ getOperacia()
+comment6.params=operacia
+comment6.target=boolean\ zadajOperaciu(char)
+comment6.text=\r\n\ Vlozi\ operaciu\ do\ kalkulacky,\ podporovan\u00E9\ operacie\ +,-,*,/,2,\!\r\n
+numComments=7
