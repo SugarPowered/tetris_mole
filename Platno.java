@@ -30,8 +30,8 @@ import java.util.LinkedHashMap;
  */
 public class Platno {
 
-    private static final int SIRKA = 800;
-    private static final int VYSKA = 600;
+    private static final int SIRKA = 290;
+    private static final int VYSKA = 500;
     private static final int FPS = 25;
     
     private static Platno platnoSingleton;
