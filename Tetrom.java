@@ -1,4 +1,4 @@
-import java.util.Random;
+ import java.util.Random;
 
 public class Tetrom {
     private Stvorec[][] tetrom;
@@ -126,7 +126,94 @@ public class Tetrom {
     }  
     }
     
-   
+    public void otoc() {
+    
+    if (this.otocenie == 0){
+    this.tetrom[0][0].posunZvisle(-20);
+    this.tetrom[0][0].posunVodorovne(40);
+    this.tetrom[0][1].posunZvisle(0);
+    this.tetrom[0][1].posunVodorovne(20);
+    this.tetrom[0][2].posunZvisle(20);
+    this.tetrom[0][2].posunVodorovne(0);
+    this.tetrom[0][3].posunZvisle(40);
+    this.tetrom[0][3].posunVodorovne(-20);
+    this.tetrom[1][0].posunZvisle(-40);
+    this.tetrom[1][0].posunVodorovne(20);
+    this.tetrom[1][1].posunZvisle(-20);
+    this.tetrom[1][1].posunVodorovne(0);
+    this.tetrom[1][2].posunZvisle(0);
+    this.tetrom[1][2].posunVodorovne(-20);
+    this.tetrom[1][3].posunZvisle(20);
+    this.tetrom[1][3].posunVodorovne(-40);
+    this.otocenie++;
+    return;
+    }
+    
+    
+    if (this.otocenie == 1 ){
+    this.tetrom[0][0].posunZvisle(40);
+    this.tetrom[0][0].posunVodorovne(20);
+    this.tetrom[0][1].posunZvisle(20);
+    this.tetrom[0][1].posunVodorovne(0);
+    this.tetrom[0][2].posunZvisle(0);
+    this.tetrom[0][2].posunVodorovne(-20);
+    this.tetrom[0][3].posunZvisle(-20);
+    this.tetrom[0][3].posunVodorovne(-40);
+    this.tetrom[1][0].posunZvisle(20);
+    this.tetrom[1][0].posunVodorovne(40);
+    this.tetrom[1][1].posunZvisle(0);
+    this.tetrom[1][1].posunVodorovne(20);
+    this.tetrom[1][2].posunZvisle(-20);
+    this.tetrom[1][2].posunVodorovne(0);
+    this.tetrom[1][3].posunZvisle(-40);
+    this.tetrom[1][3].posunVodorovne(-20);
+    this.otocenie++;
+    return;
+    }
+    
+    if (this.otocenie == 2 ){
+    this.tetrom[0][0].posunZvisle(20);
+    this.tetrom[0][0].posunVodorovne(-40);
+    this.tetrom[0][1].posunZvisle(0);
+    this.tetrom[0][1].posunVodorovne(-20);
+    this.tetrom[0][2].posunZvisle(-20);
+    this.tetrom[0][2].posunVodorovne(0);
+    this.tetrom[0][3].posunZvisle(-40);
+    this.tetrom[0][3].posunVodorovne(20);
+    this.tetrom[1][0].posunZvisle(40);
+    this.tetrom[1][0].posunVodorovne(-20);
+    this.tetrom[1][1].posunZvisle(20);
+    this.tetrom[1][1].posunVodorovne(0);
+    this.tetrom[1][2].posunZvisle(0);
+    this.tetrom[1][2].posunVodorovne(20);
+    this.tetrom[1][3].posunZvisle(-20);
+    this.tetrom[1][3].posunVodorovne(40);
+    this.otocenie++;
+    return;
+    }
+    
+    if (this.otocenie == 3 ){
+    this.tetrom[0][0].posunZvisle(-40);
+    this.tetrom[0][0].posunVodorovne(-20);
+    this.tetrom[0][1].posunZvisle(-20);
+    this.tetrom[0][1].posunVodorovne(0);
+    this.tetrom[0][2].posunZvisle(0);
+    this.tetrom[0][2].posunVodorovne(20);
+    this.tetrom[0][3].posunZvisle(20);
+    this.tetrom[0][3].posunVodorovne(40);
+    this.tetrom[1][0].posunZvisle(-20);
+    this.tetrom[1][0].posunVodorovne(-40);
+    this.tetrom[1][1].posunZvisle(-20);
+    this.tetrom[1][1].posunVodorovne(0);
+    this.tetrom[1][2].posunZvisle(20);
+    this.tetrom[1][2].posunVodorovne(0);
+    this.tetrom[1][3].posunZvisle(40);
+    this.tetrom[1][3].posunVodorovne(20);
+    this.otocenie = 0;
+    return;
+    }
+}
+    
 }        
         
        
