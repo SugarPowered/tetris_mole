@@ -1,235 +1,150 @@
- import java.util.Random;
+import java.util.Random;
+ 
 
 public class Tetrom {
     private Stvorec[][] tetrom;
-    private Boolean[][] tvar;
-    private int otocenie;
+    private Boolean[][] tvar;    
+    private String druhTvaru;
+    private int poziciaX;
+    private int poziciaY;
+    
     public Tetrom() {
-        this.tetrom = new Stvorec[][] {{new Stvorec(), new Stvorec(),new Stvorec(),new Stvorec()}, {new Stvorec(), new Stvorec(), new Stvorec(), new Stvorec(),}};
-        this.tvar = new Boolean[][] {{false, false, false, false, }, {false, false, false, false,}};
-        this.otocenie = 0;
+        this.poziciaX = 120;
+        this.poziciaY = 0;
         
-        for (int i = 0; i < this.tetrom.length; i++) {
-            for (int j = 0; j < this.tetrom[0].length; j++){
-                this.tetrom[i][j].zmenStranu(20);
-            
-            }
-        }
         
-        this.tetrom[0][0].posunVodorovne(50);
-        this.tetrom[0][0].posunZvisle(-50);
-       
-        this.tetrom[0][1].posunVodorovne(70);
-        this.tetrom[0][1].posunZvisle(-50);
         
-        this.tetrom[0][2].posunVodorovne(90);
-        this.tetrom[0][2].posunZvisle(-50);
-        
-        this.tetrom[0][3].posunVodorovne(110);
-        this.tetrom[0][3].posunZvisle(-50);
-        
-        this.tetrom[1][0].posunVodorovne(50);
-        this.tetrom[1][0].posunZvisle(-30);
-        
-        this.tetrom[1][1].posunVodorovne(70);
-        this.tetrom[1][1].posunZvisle(-30);
-        
-        this.tetrom[1][2].posunVodorovne(90);
-        this.tetrom[1][2].posunZvisle(-30);
-        
-        this.tetrom[1][3].posunVodorovne(110);
-        this.tetrom[1][3].posunZvisle(-30);
-        
-        this.vygenerujTvar();
-    }
-
-    public void vygenerujTvar() {
-    for (int i = 0; i < this.tvar.length; i++) {
-        for (int j = 0; j < this.tvar[0].length; j++){
-            this.tvar[i][j] = false;
-            
-        }
-        }
-    //nahodne vygeneruje tetrom
-    switch (new Random().nextInt(5)) {
+        // nahodne vyberie tetrom
+        switch (new Random().nextInt(5)) {
         //vytvara tvar stvorec
-        case 0 :  
-        this.tvar[0][1] = true;
-        this.tvar[0][2] = true;
-        this.tvar[1][1] = true;
-        this.tvar[1][2] = true;
-        break;
+            case 0 :  
+                this.tvar = new Boolean[][] {{true, true}, {true, true}};
+                this.tetrom = new Stvorec[][] {{new Stvorec(), new Stvorec()}, {new Stvorec(), new Stvorec()}};
+                this.druhTvaru = "S";
+                break;
         //vytvara tvar L
-        case 1 :  
-        this.tvar[0][2] = true;
-        this.tvar[1][0] = true;
-        this.tvar[1][1] = true;
-        this.tvar[1][2] = true;
-        break;
+            case 1 :  
+                this.tvar = new Boolean[][] {{true, true, true}, {true, false, false}};
+                this.tetrom = new Stvorec[][] {{new Stvorec(), new Stvorec(), new Stvorec()}, {new Stvorec(), new Stvorec(), new Stvorec()}};
+                this.druhTvaru = "L";
+                break;
         //vytvara tvar I
-        case 2 :  
-        this.tvar[0][0] = true;
-        this.tvar[0][1] = true;
-        this.tvar[0][2] = true;
-        this.tvar[0][3] = true;
-        break;
+            case 2 :  
+                this.tvar = new Boolean[][] {{true, true, true, true}};
+                this.tetrom = new Stvorec[][] {{new Stvorec(), new Stvorec(), new Stvorec(), new Stvorec()}};
+                this.druhTvaru = "I";
+                break;
         //vytvara tvar T
-        case 3 :  
-        this.tvar[0][1] = true;
-        this.tvar[1][0] = true;
-        this.tvar[1][1] = true;
-        this.tvar[1][2] = true;
-        break;
+            case 3 :  
+                this.tvar = new Boolean[][] {{false, true, false}, {true, true, true}};
+                this.tetrom = new Stvorec[][] {{new Stvorec(), new Stvorec(), new Stvorec()}, {new Stvorec(), new Stvorec(), new Stvorec()}};
+                this.druhTvaru = "T";
+                break;
         //vytvara tvar Z
-        case 4 :  
-        this.tvar[0][0] = true;
-        this.tvar[0][1] = true;
-        this.tvar[1][1] = true;
-        this.tvar[1][2] = true;
-        return;
+            default :  
+                this.tvar = new Boolean[][] {{true, true, false}, {false, true, true}};
+                this.tetrom = new Stvorec[][] {{new Stvorec(), new Stvorec(), new Stvorec()}, {new Stvorec(), new Stvorec(), new Stvorec()}};
+                this.druhTvaru = "Z";
+                break;
+        
+        
+        }
+        this.vytvorTetrom(120, 0);
     }
     
-    }
-    
-    public void zobrazTvar() {
-    for (int i = 0; i < this.tetrom.length; i++) {
-        for (int j = 0; j < this.tetrom[0].length; j++){
-            if (this.tvar[i][j] == true) {
-                this.tetrom[i][j].zobraz();
+    /** vytvori tetrom ktory bol nahodne vybrany v konstruktore*/   
+    public void vytvorTetrom(int x, int y) {
+        
+        for (int i = 0; i < this.tvar.length; i++) {
+            for (int j = 0; j < this.tvar[0].length; j++) {
+                this.tetrom[i][j].posunVodorovne(x - 60 + 20 * j);
+                this.tetrom[i][j].posunZvisle(y - 50 + 20 * i);
             }
-            
+        }       
+           
+           
+        for (int i = 0; i < this.tvar.length; i++) {
+            for (int j = 0; j < this.tvar[0].length; j++) {
+                if (!this.tvar[i][j]) {
+                    this.tetrom[i][j].zmenStranu(20);
+                } else {
+                    this.tetrom[i][j].zmenStranu(20);
+                    this.tetrom[i][j].zobraz();
+                }
+            }
         }
-        }
     }
-    
-    public void posunVpravo() {
-     for (int i = 0; i < this.tetrom.length; i++) {
-        for (int j = 0; j < this.tetrom[0].length; j++){
-            this.tetrom[i][j].posunVpravo();
-        }           
-    }
-    }
+        
    
+    /** posuva tetrom do prava max po okraj plochy*/
+    public void posunVpravo() {
+        if (this.poziciaX + 20 * this.tetrom[0].length < 300) {
+            for (int i = 0; i < this.tetrom.length; i++) {
+                for (int j = 0; j < this.tetrom[0].length; j++) {
+                    this.tetrom[i][j].posunVpravo();
+                }           
+            }
+            this.poziciaX = this.poziciaX + 20;
+        }
+    }
+    
+    /** posuva tetrom do prava max po okraj plochy*/
     public void posunVlavo() {
-    for (int i = 0; i < this.tetrom.length; i++) {
-        for (int j = 0; j < this.tetrom[0].length; j++){
-            this.tetrom[i][j].posunVlavo();
-        }           
-    }  
+        if (this.poziciaX > 0) {
+            for (int i = 0; i < this.tetrom.length; i++) {
+                for (int j = 0; j < this.tetrom[0].length; j++) {
+                    this.tetrom[i][j].posunVlavo();
+                }           
+            }  
+            this.poziciaX = this.poziciaX - 20;
+        }
     }
     
-    public void posunDole() {
-    for (int i = 0; i < this.tetrom.length; i++) {
-        for (int j = 0; j < this.tetrom[0].length; j++){
-            this.tetrom[i][j].posunZvisle(20);
-        }           
-    }  
+    /** posuva tetrom do dola */
+    public void tik() {
+        if (this.poziciaY + 20 * this.tetrom.length < 500) {
+            for (int i = 0; i < this.tetrom.length; i++) {
+                for (int j = 0; j < this.tetrom[0].length; j++) {
+                    this.tetrom[i][j].posunZvisle(20);
+                }           
+            }  
+        }
+        this.poziciaY = this.poziciaY + 20;
     }
     
+    /** otaca tetrom */
     public void otoc() {
+        Boolean[][] otocenePole = new Boolean[this.tetrom[0].length][this.tetrom.length];
+    //vytovri nove pole kde su riadky vymenene so stlpcami
+        for (int i = 0; i < otocenePole.length; i++) {
+            for (int j = 0; j < otocenePole[0].length; j++) {
+                otocenePole[i][j] = this.tvar[j][i];
+            }           
+        }
     
-    if (this.otocenie == 0){
-    this.tetrom[0][0].posunZvisle(-20);
-    this.tetrom[0][0].posunVodorovne(40);
-    this.tetrom[0][1].posunZvisle(0);
-    this.tetrom[0][1].posunVodorovne(20);
-    this.tetrom[0][2].posunZvisle(20);
-    this.tetrom[0][2].posunVodorovne(0);
-    this.tetrom[0][3].posunZvisle(40);
-    this.tetrom[0][3].posunVodorovne(-20);
-    this.tetrom[1][0].posunZvisle(-40);
-    this.tetrom[1][0].posunVodorovne(20);
-    this.tetrom[1][1].posunZvisle(-20);
-    this.tetrom[1][1].posunVodorovne(0);
-    this.tetrom[1][2].posunZvisle(0);
-    this.tetrom[1][2].posunVodorovne(-20);
-    this.tetrom[1][3].posunZvisle(20);
-    this.tetrom[1][3].posunVodorovne(-40);
-    this.otocenie++;
-    return;
-    }
+        this.tvar = null;
+        this.tvar = otocenePole;
+    //srusi srary tetrom
+        for (int i = 0; i < this.tetrom.length; i++) {
+            for (int j = 0; j < this.tetrom[0].length; j++) {
+                this.tetrom[i][j].skry();
+            }           
+        }
+        this.tetrom = null;
+    
+        this.tetrom = new Stvorec[otocenePole.length][otocenePole[0].length];
+    //vytvori novy tetrom uz otoceny
+        for (int i = 0; i < otocenePole.length; i++) {
+            for (int j = 0; j < otocenePole[0].length; j++) {
+                this.tetrom[i][j] = new Stvorec();
+            }           
+        }
+        this.vytvorTetrom(this.poziciaX, this.poziciaY);
+        
+    }  
+   
     
     
-    if (this.otocenie == 1 ){
-    this.tetrom[0][0].posunZvisle(40);
-    this.tetrom[0][0].posunVodorovne(20);
-    this.tetrom[0][1].posunZvisle(20);
-    this.tetrom[0][1].posunVodorovne(0);
-    this.tetrom[0][2].posunZvisle(0);
-    this.tetrom[0][2].posunVodorovne(-20);
-    this.tetrom[0][3].posunZvisle(-20);
-    this.tetrom[0][3].posunVodorovne(-40);
-    this.tetrom[1][0].posunZvisle(20);
-    this.tetrom[1][0].posunVodorovne(40);
-    this.tetrom[1][1].posunZvisle(0);
-    this.tetrom[1][1].posunVodorovne(20);
-    this.tetrom[1][2].posunZvisle(-20);
-    this.tetrom[1][2].posunVodorovne(0);
-    this.tetrom[1][3].posunZvisle(-40);
-    this.tetrom[1][3].posunVodorovne(-20);
-    this.otocenie++;
-    return;
-    }
     
-    if (this.otocenie == 2 ){
-    this.tetrom[0][0].posunZvisle(20);
-    this.tetrom[0][0].posunVodorovne(-40);
-    this.tetrom[0][1].posunZvisle(0);
-    this.tetrom[0][1].posunVodorovne(-20);
-    this.tetrom[0][2].posunZvisle(-20);
-    this.tetrom[0][2].posunVodorovne(0);
-    this.tetrom[0][3].posunZvisle(-40);
-    this.tetrom[0][3].posunVodorovne(20);
-    this.tetrom[1][0].posunZvisle(40);
-    this.tetrom[1][0].posunVodorovne(-20);
-    this.tetrom[1][1].posunZvisle(20);
-    this.tetrom[1][1].posunVodorovne(0);
-    this.tetrom[1][2].posunZvisle(0);
-    this.tetrom[1][2].posunVodorovne(20);
-    this.tetrom[1][3].posunZvisle(-20);
-    this.tetrom[1][3].posunVodorovne(40);
-    this.otocenie++;
-    return;
-    }
-    
-    if (this.otocenie == 3 ){
-    this.tetrom[0][0].posunZvisle(-40);
-    this.tetrom[0][0].posunVodorovne(-20);
-    this.tetrom[0][1].posunZvisle(-20);
-    this.tetrom[0][1].posunVodorovne(0);
-    this.tetrom[0][2].posunZvisle(0);
-    this.tetrom[0][2].posunVodorovne(20);
-    this.tetrom[0][3].posunZvisle(20);
-    this.tetrom[0][3].posunVodorovne(40);
-    this.tetrom[1][0].posunZvisle(-20);
-    this.tetrom[1][0].posunVodorovne(-40);
-    this.tetrom[1][1].posunZvisle(-20);
-    this.tetrom[1][1].posunVodorovne(0);
-    this.tetrom[1][2].posunZvisle(20);
-    this.tetrom[1][2].posunVodorovne(0);
-    this.tetrom[1][3].posunZvisle(40);
-    this.tetrom[1][3].posunVodorovne(20);
-    this.otocenie = 0;
-    return;
-    }
+   
 }
-    
-}        
-        
-       
-
-
-
-      
-
-
-      
-     
-  
-        
-    
- 
-    
-
-
-
