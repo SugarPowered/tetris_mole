@@ -12,11 +12,13 @@ public class Stvorec {
 
     private static final int INIT_X = 60;
     private static final int INIT_Y = 50;
-    private static final int INIT_STRANA = 30;
+    private static final int INIT_STRANA = 20;
     private static final String INIT_FARBA = "red";
 
     private boolean jeViditelny;
     private Platno.PopisTvaru popis;
+    
+    private boolean jeTetrom;
 
     /**
      * Vytvor nový štvorec preddefinovanej farby na preddefinovanej pozícii.
@@ -53,6 +55,14 @@ public class Stvorec {
             this.jeViditelny = false;
         }
     }
+    
+    public boolean getJeTetrom() {
+        return this.jeTetrom;
+    }
+    
+    public void setJeTetrom(boolean jeTetrom) {
+        this.jeTetrom = jeTetrom;
+    }
 
     /**
      * (Štvorec) Vráti x súradnicu ľavého horného rohu štvorca
@@ -79,14 +89,14 @@ public class Stvorec {
      * (Štvorec) Posuň sa vpravo o pevnú dĺžku.
      */
     public void posunVpravo() {
-        this.posunVodorovne(20);
+        this.posunVodorovne(25);
     }
 
     /**
      * (Štvorec) Posuň sa vľavo o pevnú dĺžku.
      */
     public void posunVlavo() {
-        this.posunVodorovne(-20);
+        this.posunVodorovne(-25);
     }
 
     /**

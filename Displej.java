@@ -54,10 +54,7 @@ public class Displej extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.playTlacitko) {
-            this.playTlacitko.setVisible(false);
-            //provizorne umiestnenie exit tlačitka, zmeniť podľa hracej plochy
-            this.exitTlacitko.setBounds(375, 350, 75, 50);
-            this.label.setVisible(false);
+            Hra hra = new Hra();
         } else if (e.getSource() == this.exitTlacitko) {
             System.exit(1);
         }
