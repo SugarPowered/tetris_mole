@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public class Tetrom {
     private Stvorec[][] tetrom;
-    private Boolean[][] tvar;    
-    private Integer[][] padnute = new Integer[20][12];
+    private Boolean[][] tvar;
     private String druhTvaru;
     private int poziciaX;
     private int poziciaY;
@@ -120,7 +119,6 @@ public class Tetrom {
             this.poziciaY = this.poziciaY + 25;
         } else {
             this.manazer.prestanSpravovatObjekt(this);
-            
             Tetrom tetrom = new Tetrom();
         }
         
