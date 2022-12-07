@@ -7,11 +7,11 @@ public class Tetrom {
     private String druhTvaru;
     private int poziciaX;
     private int poziciaY;
-    
+    private int poziciaOtocenia;
     public Tetrom() {
         this.poziciaX = 120;
         this.poziciaY = 0;
-        
+        this.poziciaOtocenia = 1;
         
         
         // nahodne vyberie tetrom
@@ -124,7 +124,7 @@ public class Tetrom {
     
         this.tvar = null;
         this.tvar = otocenePole;
-    //srusi srary tetrom
+    //zrusi stary tetrom
         for (int i = 0; i < this.tetrom.length; i++) {
             for (int j = 0; j < this.tetrom[0].length; j++) {
                 this.tetrom[i][j].skry();
@@ -140,11 +140,22 @@ public class Tetrom {
             }           
         }
         this.vytvorTetrom(this.poziciaX, this.poziciaY);
-        
+        this.poziciaOtocenia++;
     }  
-   
+    
+    public Boolean[][] getTvar() {
+    return this.tvar;
+    }
+    
+    public int getX() {
+    return this.poziciaX;
+    }
+    
+    public int getY() {
+    return this.poziciaY;
+    }
+}   
     
     
     
    
-}

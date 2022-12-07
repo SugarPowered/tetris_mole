@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=hraciaPlocha
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ hraciaPlocha\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=hraciaPlocha()
+comment2.params=tetrom
+comment2.target=void\ pridajTetrom(Tetrom)
+comment3.params=
+comment3.target=void\ zobrazPlochu()
+numComments=4
