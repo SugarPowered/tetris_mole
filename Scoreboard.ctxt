@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Scoreboard
+comment1.params=skore
+comment1.target=Scoreboard(int)
+comment2.params=
+comment2.target=int\ getSkore()
+comment3.params=
+comment3.target=void\ vypisSkore()
+comment4.params=pridaneSkore
+comment4.target=void\ pridajSkore(int)
+comment5.params=
+comment5.target=void\ resetSkore()
+numComments=6
