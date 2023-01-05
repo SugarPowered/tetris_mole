@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Grid
+comment1.params=
+comment1.target=Grid()
+comment2.params=
+comment2.target=Stvorec[][]\ getPlocha()
+comment3.params=indexRiadku\ indexStlpca
+comment3.target=void\ nastavStvorec(int,\ int)
+comment4.params=
+comment4.target=void\ nastavTetrom()
+numComments=5
